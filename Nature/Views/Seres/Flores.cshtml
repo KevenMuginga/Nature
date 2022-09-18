@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Nature.Models.SerVivo>
+
+<div class="p">
+    <h3>Flores</h3>
+</div>
+
+<hr style="background-color:#8AC926; min-height:2px; opacity:1;" />
+
+<div class="p-3 row">
+    @foreach (var flores in Model)
+    {
+
+
+        <div class="col-md-3 pb-5">
+
+            @if (flores.Imagem != null)
+            {
+                var base64 = Convert.ToBase64String(flores.Imagem);
+                var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+
+                <img src="@imgSrc" style="max-width: 100%; height: 300px; " />
+            }
+
+            <h3>@flores.Nome</h3>
+            <p class="text-bg-light txt">fruto.Genero</p>
+            <p class="text-black">@flores.Caracteristicas</p>
+            <p class="text-black">@flores.Ambiente</p>
+
+            <div>
+                @Html.ActionLink("Edit", "Edit", new { id = flores.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = flores.Id }) |
+               @* @Html.ActionLink("Delete", "Delete", new { id = flores.Id })*@
+            </div>
+
+            <hr style="background-color:#8AC926; min-height:2px; opacity:1;" />
+        </div>
+
+    }
+</div>
+
